@@ -1,16 +1,9 @@
 package route
 
-import "tanahore/internal/app/soil_predict/handler"
+import "github.com/labstack/echo/v4"
 
-type SoilPredictRoutes interface {
-}
+func (route *SoilPredictRoutesImpl) MobileSoilPredict(apiGroup *echo.Group) {
+	SoilPredictGroup := apiGroup.Group("/api/predict")
 
-type SoilPredictRoutesImpl struct {
-	Handler handler.SoilPredictHandler
-}
-
-func NewSoilPredictRoutes(handler handler.SoilPredictHandler) SoilPredictRoutes {
-	return &SoilPredictRoutesImpl{
-		Handler: handler,
-	}
+	SoilPredictGroup.POST("", route.Handler.GetPrediction)
 }

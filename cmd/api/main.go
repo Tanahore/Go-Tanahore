@@ -7,14 +7,31 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"tanahore/configs"
+	"tanahore/internal/app"
+	"tanahore/internal/infrastructure"
 
+	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
+	mysql, err := configs.InitConfig()
+	if err != nil {
+		logrus.Fatal("error loading congfiguration : ", err.Error())
+	}
+
+	db, err := infrastructure.NewMySQLConnection(&mysql.MySQL)
+	if err != nil {
+		logrus.Fatal("cannot connect to mysql : ", err.Error())
+	}
+
+	validate := validator.New()
 	e := echo.New()
+
+	app.InitApp(db, validate, e)
 
 	e.GET("/", func(c echo.Context) error {
 		file, err := os.ReadFile("./web/static/index.html")
