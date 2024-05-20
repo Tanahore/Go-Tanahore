@@ -12,10 +12,7 @@ func (service *ArticleServiceImpl) GetArticlesByID(article_id *web.GetArticlesBy
 	}
 	resDomain, err := service.Repository.GetArticlesByID(article_id)
 	if err != nil {
-		return nil, errors.New("something went wrong")
-	}
-	if resDomain == nil {
-		return nil, errors.New("not found")
+		return nil, err
 	}
 	res := converter.ArticleByIDToResponse(resDomain)
 	return res, nil
