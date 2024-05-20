@@ -12,7 +12,7 @@ import (
 func (cloudinaryUploader *CloudinaryUploaderImpl) Uploader(c echo.Context, fileheader, folderName string, required bool) (string, error) {
 
 	fileHeader, _ := c.FormFile(fileheader)
-	folderPath := fmt.Sprintf("harsa/%s", folderName)
+	folderPath := fmt.Sprintf("tanahore/%s", folderName)
 
 	if fileHeader != nil {
 		file, _ := fileHeader.Open()
