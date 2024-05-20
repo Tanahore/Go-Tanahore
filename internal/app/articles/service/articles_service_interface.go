@@ -10,6 +10,7 @@ import (
 type ArticleService interface {
 	CreateArticle(req *web.CreateArticle) error
 	GetAllArticles() ([]web.AllArticlesResponse, error)
+	GetArticlesByID(article_id *web.GetArticlesByID) (*web.AllArticlesResponse, error)
 }
 
 type ArticleServiceImpl struct {

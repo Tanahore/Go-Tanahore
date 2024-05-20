@@ -10,3 +10,7 @@ type CreateArticle struct {
 	Title     string           `gorm:"type:varchar(50);not null" json:"title" validae:"required"`
 	Content   string           `gorm:"type:text;not null" json:"content" validate:"required"`
 }
+
+type GetArticlesByID struct {
+	ArticleID uint `json:"articleID" validate:"required"`
+}

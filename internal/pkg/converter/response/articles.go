@@ -18,3 +18,12 @@ func AllArticleDomainToResponse(resDomain []domain.Articles) []web.AllArticlesRe
 	}
 	return res
 }
+
+func ArticleByIDToResponse(resDomain *domain.Articles) *web.AllArticlesResponse {
+	return &web.AllArticlesResponse{
+		ArticleID: resDomain.ArticleID,
+		Title:     resDomain.Title,
+		Content:   resDomain.Content,
+		SoilType:  resDomain.SoilType,
+	}
+}
