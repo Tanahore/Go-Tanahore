@@ -8,7 +8,8 @@ import (
 )
 
 type AppConfig struct {
-	MySQL MySQLConfig
+	MySQL      MySQLConfig
+	Cloudinary CloudinaryConfig
 }
 
 type MySQLConfig struct {
@@ -19,8 +20,13 @@ type MySQLConfig struct {
 	Database string
 }
 
+type CloudinaryConfig struct {
+	CloudName string
+	ApiKey    string
+	ApiSecret string
+}
+
 func InitConfig() (*AppConfig, error) {
-	// Cek keberadaan file .env dan memuatnya
 	err := godotenv.Load()
 	if err != nil {
 		return nil, fmt.Errorf("failed to load environment variables from .env file: %w", err)
@@ -33,6 +39,11 @@ func InitConfig() (*AppConfig, error) {
 			Host:     os.Getenv("DB_HOST"),
 			Port:     os.Getenv("DB_PORT"),
 			Database: os.Getenv("DB_NAME"),
+		},
+		Cloudinary: CloudinaryConfig{
+			CloudName: os.Getenv("CLOUDINARY_CLOUD_NAME"),
+			ApiKey:    os.Getenv("CLOUDINARY_API_KEY"),
+			ApiSecret: os.Getenv("CLOUDINARY_API_SECRET"),
 		},
 	}, nil
 }
