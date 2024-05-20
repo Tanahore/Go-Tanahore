@@ -10,6 +10,7 @@ type ArticleHandler interface {
 	CreateArticle(ctx echo.Context) error
 	GetAllArticles(ctx echo.Context) error
 	GetArticleByID(ctx echo.Context) error
+	ArticleSearch(ctx echo.Context) error
 }
 
 type ArticleHandlerImpl struct {

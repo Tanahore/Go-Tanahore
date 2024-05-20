@@ -8,4 +8,5 @@ func (routes *ArticleRoutesImpl) MobileArticleRoutes(apiGroup echo.Group) {
 	ArticleGroup.POST("/create", routes.Handler.CreateArticle)
 	ArticleGroup.GET("", routes.Handler.GetAllArticles)
 	ArticleGroup.GET("/:id", routes.Handler.GetArticleByID)
+	ArticleGroup.GET("/search/:title", routes.Handler.ArticleSearch)
 }

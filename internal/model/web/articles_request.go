@@ -14,3 +14,7 @@ type CreateArticle struct {
 type GetArticlesByID struct {
 	ArticleID uint `json:"articleID" validate:"required"`
 }
+
+type GetArticlesByTitle struct {
+	Title string `json:"title" validate:"required"`
+}

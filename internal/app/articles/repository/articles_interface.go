@@ -12,6 +12,7 @@ type ArticlesRepository interface {
 	CheckExistingArticle(title string) bool
 	GetAllArticles() ([]domain.Articles, error)
 	GetArticlesByID(id *web.GetArticlesByID) (*domain.Articles, error)
+	GetArticlesByTitle(title string) ([]domain.Articles, error)
 }
 
 type ArticlesRepositoryImpl struct {
