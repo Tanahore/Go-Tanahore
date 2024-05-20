@@ -10,6 +10,7 @@ import (
 	"tanahore/configs"
 	"tanahore/internal/app"
 	"tanahore/internal/infrastructure"
+	"tanahore/internal/pkg/cloudinary"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -18,20 +19,21 @@ import (
 )
 
 func main() {
-	mysql, err := configs.InitConfig()
+	config, err := configs.InitConfig()
 	if err != nil {
 		logrus.Fatal("error loading congfiguration : ", err.Error())
 	}
 
-	db, err := infrastructure.NewMySQLConnection(&mysql.MySQL)
+	db, err := infrastructure.NewMySQLConnection(&config.MySQL)
 	if err != nil {
 		logrus.Fatal("cannot connect to mysql : ", err.Error())
 	}
 
+	cloudinaryUploader := cloudinary.NewClodinaryUploader(&config.Cloudinary)
 	validate := validator.New()
 	e := echo.New()
 
-	app.InitApp(db, validate, e)
+	app.InitApp(db, validate, e, &cloudinaryUploader)
 
 	e.GET("/", func(c echo.Context) error {
 		file, err := os.ReadFile("./web/static/index.html")
