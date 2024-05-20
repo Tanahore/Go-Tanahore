@@ -8,6 +8,7 @@ import (
 
 type ArticleHandler interface {
 	CreateArticle(ctx echo.Context) error
+	GetAllArticles(ctx echo.Context) error
 }
 
 type ArticleHandlerImpl struct {

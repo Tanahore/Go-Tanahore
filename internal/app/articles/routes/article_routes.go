@@ -6,4 +6,5 @@ func (routes *ArticleRoutesImpl) MobileArticleRoutes(apiGroup echo.Group) {
 	ArticleGroup := apiGroup.Group("/api/articles")
 
 	ArticleGroup.POST("/create", routes.Handler.CreateArticle)
+	ArticleGroup.GET("", routes.Handler.GetAllArticles)
 }
