@@ -8,6 +8,7 @@ import (
 
 type ArticelRoutes interface {
 	MobileArticleRoutes(apiGroup echo.Group)
+	WebArticleRoutes(apiGroup echo.Group)
 }
 
 type ArticleRoutesImpl struct {

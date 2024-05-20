@@ -16,4 +16,7 @@ func InitApp(db *gorm.DB, validate *validator.Validate, e *echo.Echo) {
 
 	articleRoutes := articles.ArticleSetup(db, validate)
 	articleRoutes.MobileArticleRoutes(*apiGroupMobile)
+
+	apiGroupWeb := e.Group("web")
+	articleRoutes.WebArticleRoutes(*apiGroupWeb)
 }
