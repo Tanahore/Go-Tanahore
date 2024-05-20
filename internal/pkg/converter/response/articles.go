@@ -11,8 +11,8 @@ func AllArticleDomainToResponse(resDomain []domain.Articles) []web.AllArticlesRe
 		articleResponse := web.AllArticlesResponse{
 			ArticleID: resDomain[i].ArticleID,
 			Title:     resDomain[i].Title,
-			Content:   resDomain[i].Content,
 			SoilType:  resDomain[i].SoilType,
+			ImageURL:  resDomain[i].ImageURL,
 		}
 		res = append(res, articleResponse)
 	}
@@ -25,5 +25,6 @@ func ArticleByIDToResponse(resDomain *domain.Articles) *web.AllArticlesResponse 
 		Title:     resDomain.Title,
 		Content:   resDomain.Content,
 		SoilType:  resDomain.SoilType,
+		ImageURL:  resDomain.ImageURL,
 	}
 }

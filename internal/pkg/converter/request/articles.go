@@ -10,5 +10,6 @@ func ArticleRequestToDomain(req *web.CreateArticle) *domain.Articles {
 		Title:    req.Title,
 		Content:  req.Content,
 		SoilType: req.SoilType,
+		// ImageURL: imageURL,
 	}
 }

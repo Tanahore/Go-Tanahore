@@ -7,6 +7,7 @@ type Articles struct {
 	SoilType  SoilTypes `gorm:"type:enum('Aluvial','Andosol','Latosol','Humus');not null" json:"soilType" validate:"required"`
 	Title     string    `gorm:"type:varchar(50);not null" json:"title" validate:"required"`
 	Content   string    `gorm:"type:text;not null" json:"content" validate:"required"`
+	ImageURL  string    `gorm:"type:text;not null" json:"imageURL" validate:"required"`
 	CreatedAt time.Time `gorm:"autoCreateTime" json:"createdAt"`
 	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 }
