@@ -11,7 +11,7 @@ func (service *ArticleServiceImpl) GetAllArticles() ([]web.AllArticlesResponse, 
 	if err != nil {
 		return nil, errors.New("something went wrong")
 	}
-	if resDomain == nil {
+	if len(resDomain) == 0 {
 		return nil, errors.New("not found")
 	}
 	res := converter.AllArticleDomainToResponse(resDomain)
