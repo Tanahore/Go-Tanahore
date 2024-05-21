@@ -12,6 +12,7 @@ func AllArticleDomainToResponse(resDomain []domain.Articles) []web.AllArticlesRe
 			ArticleID: resDomain[i].ArticleID,
 			Title:     resDomain[i].Title,
 			SoilType:  resDomain[i].SoilType,
+			Content:   resDomain[i].Content,
 			ImageURL:  resDomain[i].ImageURL,
 		}
 		res = append(res, articleResponse)
