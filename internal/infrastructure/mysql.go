@@ -29,5 +29,6 @@ func NewMySQLConnection(config *configs.MySQLConfig) (*gorm.DB, error) {
 func migration(db *gorm.DB) {
 	db.AutoMigrate(
 		&domain.Plants{},
+		&domain.Articles{},
 	)
 }
