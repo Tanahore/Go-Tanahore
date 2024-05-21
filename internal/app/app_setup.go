@@ -15,7 +15,7 @@ func InitApp(db *gorm.DB, validate *validator.Validate, e *echo.Echo, cloudinary
 	soilPredictRoutes := soilPredict.SoilPredictSetup(db, validate)
 	soilPredictRoutes.MobileSoilPredict(apiGroupMobile)
 
-	articleRoutes := articles.ArticleSetup(db, validate)
+	articleRoutes := articles.ArticleSetup(db, validate, *cloudinary)
 	articleRoutes.MobileArticleRoutes(*apiGroupMobile)
 
 	apiGroupWeb := e.Group("web")

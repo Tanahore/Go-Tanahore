@@ -5,11 +5,11 @@ import (
 	"tanahore/internal/model/web"
 )
 
-func ArticleRequestToDomain(req *web.CreateArticle) *domain.Articles {
+func ArticleRequestToDomain(req *web.CreateArticle, imageURL string) *domain.Articles {
 	return &domain.Articles{
 		Title:    req.Title,
 		Content:  req.Content,
 		SoilType: req.SoilType,
-		// ImageURL: imageURL,
+		ImageURL: imageURL,
 	}
 }

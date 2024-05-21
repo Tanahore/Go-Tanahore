@@ -13,7 +13,7 @@ func (handler *ArticleHandlerImpl) CreateArticle(ctx echo.Context) error {
 	if err := ctx.Bind(&req); err != nil {
 		return responses.StatusBadRequest(ctx, "Failed to Bind Data", err)
 	}
-	if err := handler.Service.CreateArticle(&req); err != nil {
+	if err := handler.Service.CreateArticle(&req, ctx); err != nil {
 		if strings.Contains(err.Error(), "Validation") {
 			return responses.StatusBadRequest(ctx, "Input data is not valid", err)
 		}
