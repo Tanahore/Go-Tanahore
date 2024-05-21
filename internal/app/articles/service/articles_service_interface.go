@@ -11,9 +11,9 @@ import (
 
 type ArticleService interface {
 	CreateArticle(req *web.CreateArticle, ctx echo.Context) error
-	GetAllArticles() ([]web.AllArticlesResponse, error)
+	GetAllArticles() ([]web.GetAllArticlesResponse, error)
 	GetArticlesByID(article_id *web.GetArticlesByID) (*web.AllArticlesResponse, error)
-	ArticleSearch(req *web.GetArticlesByTitle) ([]web.AllArticlesResponse, error)
+	ArticleSearch(req *web.GetArticlesByTitle) ([]web.GetAllArticlesResponse, error)
 }
 
 type ArticleServiceImpl struct {

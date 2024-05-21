@@ -6,7 +6,7 @@ import (
 	converter "tanahore/internal/pkg/converter/response"
 )
 
-func (service *ArticleServiceImpl) ArticleSearch(req *web.GetArticlesByTitle) ([]web.AllArticlesResponse, error) {
+func (service *ArticleServiceImpl) ArticleSearch(req *web.GetArticlesByTitle) ([]web.GetAllArticlesResponse, error) {
 	if err := service.Validate.Struct(req); err != nil {
 		return nil, errors.New("validation error")
 	}

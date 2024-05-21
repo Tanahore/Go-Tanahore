@@ -9,3 +9,9 @@ type AllArticlesResponse struct {
 	Content   string           `gorm:"type:text;not null" json:"content"`
 	ImageURL  string           `json:"imageURL"`
 }
+
+type GetAllArticlesResponse struct {
+	ArticleID uint   `json:"articleID"`
+	Title     string `json:"title"`
+	ImageURL  string `json:"imageURL"`
+}

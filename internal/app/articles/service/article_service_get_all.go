@@ -6,7 +6,7 @@ import (
 	converter "tanahore/internal/pkg/converter/response"
 )
 
-func (service *ArticleServiceImpl) GetAllArticles() ([]web.AllArticlesResponse, error) {
+func (service *ArticleServiceImpl) GetAllArticles() ([]web.GetAllArticlesResponse, error) {
 	resDomain, err := service.Repository.GetAllArticles()
 	if err != nil {
 		return nil, errors.New("something went wrong")

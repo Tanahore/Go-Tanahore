@@ -5,14 +5,12 @@ import (
 	"tanahore/internal/model/web"
 )
 
-func AllArticleDomainToResponse(resDomain []domain.Articles) []web.AllArticlesResponse {
-	var res []web.AllArticlesResponse
+func AllArticleDomainToResponse(resDomain []domain.Articles) []web.GetAllArticlesResponse {
+	var res []web.GetAllArticlesResponse
 	for i := range resDomain {
-		articleResponse := web.AllArticlesResponse{
+		articleResponse := web.GetAllArticlesResponse{
 			ArticleID: resDomain[i].ArticleID,
 			Title:     resDomain[i].Title,
-			SoilType:  resDomain[i].SoilType,
-			Content:   resDomain[i].Content,
 			ImageURL:  resDomain[i].ImageURL,
 		}
 		res = append(res, articleResponse)
