@@ -8,7 +8,7 @@ import (
 )
 
 type SoilPredictService interface {
-	GetSoilPlantsBySoilType(soilType *web.SoilPredictPlansRequest) ([]web.SoilPlantsResponse, error)
+	GetSoilPlantsBySoilType(soilType *web.SoilPredictPlansRequest) (*web.SoilPredictPlansResponse, error)
 }
 
 type SoilPredictServiceImpl struct {
