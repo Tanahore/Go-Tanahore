@@ -2,9 +2,12 @@ package handler
 
 import (
 	"bytes"
+	"encoding/json"
 	"io"
 	"mime/multipart"
 	"net/http"
+	"tanahore/internal/model/domain"
+	"tanahore/internal/model/web"
 	"tanahore/internal/pkg/responses"
 
 	"github.com/labstack/echo/v4"
@@ -66,20 +69,25 @@ func (soilPredictHandler SoilPredictHandlerImpl) GetPrediction(ctx echo.Context)
 		return responses.StatusInternalServerError(ctx, "Failed to read response", err)
 	}
 
-	// var soil web.SoilPredictPlansRequest
-	// soilType := string(body)
+	var apiResponse web.ImageModelApiResponse
 
-	// switch soilType {
-	// case string(domain.Aluvial), string(domain.Latosol), string(domain.Humus), string(domain.Andosol):
-	// 	soil.SoilType = domain.SoilTypes(soilType)
-	// default:
-	// 	return responses.StatusBadRequest(ctx, "Invalid soil type in response: "+soilType, err)
-	// }
+	if err := json.Unmarshal(body, &apiResponse); err != nil {
+		return responses.StatusInternalServerError(ctx, "Failed to unmarshal JSON response", err)
+	}
 
-	// res, err := soilPredictHandler.SoilPredictService.GetSoilPlantsBySoilType(&soil)
-	// if err != nil {
-	// 	return responses.StatusInternalServerError(ctx, "something went wrong", err)
-	// }
-	// return responses.StatusOK(ctx, "Successfully predicted soil image", res, nil)
-	return responses.StatusOK(ctx, "Successfully predicted soil image", body, nil)
+	// Memeriksa apakah respons status sukses
+	if apiResponse.Status.Code != 200 {
+		return responses.StatusInternalServerError(ctx, "Model API responded with an error", nil)
+	}
+
+	soilType := string(apiResponse.Data.JenisTanah)
+	soil := web.SoilPredictPlansRequest{
+		SoilType: domain.SoilTypes(soilType),
+	}
+
+	res, err := soilPredictHandler.SoilPredictService.GetSoilPlantsBySoilType(&soil)
+	if err != nil {
+		return responses.StatusInternalServerError(ctx, "something went wrong", err)
+	}
+	return responses.StatusOK(ctx, "Successfully predicted soil image", res, nil)
 }

@@ -8,6 +8,7 @@ import (
 
 type SoilPredictHandler interface {
 	GetPrediction(ctx echo.Context) error
+	GetExactPlant(ctx echo.Context) error
 }
 
 type SoilPredictHandlerImpl struct {

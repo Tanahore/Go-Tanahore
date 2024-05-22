@@ -7,7 +7,7 @@ import (
 
 func (soilRepository *SoilPredictRepositoryImpl) GetSoilPlantsBySoilType(soilType *web.SoilPredictPlansRequest) ([]domain.Plants, error) {
 	var plants []domain.Plants
-	result := soilRepository.DB.Where("plants.soiltype=?", soilType).Find(&plants)
+	result := soilRepository.DB.Where("soil_type=?", soilType.SoilType).Find(&plants)
 	if result.Error != nil {
 		return nil, result.Error
 	}

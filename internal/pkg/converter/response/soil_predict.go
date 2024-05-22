@@ -5,13 +5,14 @@ import (
 	"tanahore/internal/model/web"
 )
 
-func PlantsDomainToSoilPlantResponse(plants []domain.Plants) []web.SoilPlantsResponse {
-	var recommendation []web.SoilPlantsResponse
+func PlantsDomainToSoilPlantResponse(plants []domain.Plants, soil string) web.SoilPredictPlansResponse {
+	var recommendations []domain.SoilTypes
 	for i := range plants {
-		soilPlantResponse := web.SoilPlantsResponse{
-			PlantRecommendation: plants[i].PlantName,
-		}
-		recommendation = append(recommendation, soilPlantResponse)
+		recommendations = append(recommendations, domain.SoilTypes(plants[i].PlantName))
 	}
-	return recommendation
+	res := web.SoilPredictPlansResponse{
+		PredictedSoil:        soil,
+		PlantRecommendations: recommendations,
+	}
+	return res
 }
