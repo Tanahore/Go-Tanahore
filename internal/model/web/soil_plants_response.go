@@ -11,16 +11,27 @@ type SoilPredictPlansResponse struct {
 	PlantRecommendations []domain.SoilTypes `json:"plantRecommendations"`
 }
 
-type ModelResponseData struct {
-	JenisTanah string `json:"jenis_tanah"`
-}
-
 type ModelResponseStatus struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
 }
 
+// soil predict
+type ImageModelResponseData struct {
+	JenisTanah string `json:"jenis_tanah"`
+}
+
 type ImageModelApiResponse struct {
-	Data   ModelResponseData   `json:"data"`
-	Status ModelResponseStatus `json:"status"`
+	Data   ImageModelResponseData `json:"data"`
+	Status ModelResponseStatus    `json:"status"`
+}
+
+// plants predict
+type PlantModelResponseData struct {
+	Plant string `json:"plantRecommendation"`
+}
+
+type PlantModelApiResponse struct {
+	Data   PlantModelResponseData `json:"data"`
+	Status ModelResponseStatus    `json:"status"`
 }
