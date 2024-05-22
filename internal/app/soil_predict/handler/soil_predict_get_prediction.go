@@ -69,7 +69,7 @@ func (soilPredictHandler SoilPredictHandlerImpl) GetPrediction(ctx echo.Context)
 		return responses.StatusInternalServerError(ctx, "Failed to read response", err)
 	}
 
-	var apiResponse web.ModelApiResponse
+	var apiResponse web.ImageModelApiResponse
 
 	if err := json.Unmarshal(body, &apiResponse); err != nil {
 		return responses.StatusInternalServerError(ctx, "Failed to unmarshal JSON response", err)

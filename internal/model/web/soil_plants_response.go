@@ -20,7 +20,7 @@ type ModelResponseStatus struct {
 	Message string `json:"message"`
 }
 
-type ModelApiResponse struct {
+type ImageModelApiResponse struct {
 	Data   ModelResponseData   `json:"data"`
 	Status ModelResponseStatus `json:"status"`
 }
