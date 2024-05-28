@@ -3,6 +3,7 @@ package app
 import (
 	"tanahore/configs"
 	articles "tanahore/internal/app/articles"
+	"tanahore/internal/app/devices"
 	soilPredict "tanahore/internal/app/soil_predict"
 	"tanahore/internal/pkg/cloudinary"
 
@@ -18,8 +19,11 @@ func InitApp(db *gorm.DB, validate *validator.Validate, e *echo.Echo, cloudinary
 	soilPredictRoutes.MobileSoilPredict(apiGroupMobile)
 
 	articleRoutes := articles.ArticleSetup(db, validate, *cloudinary)
-	articleRoutes.MobileArticleRoutes(*apiGroupMobile)
+	articleRoutes.MobileArticleRoutes(apiGroupMobile)
+
+	deviceRoutes := devices.DeviceSetup(firebaseClient, validate)
+	deviceRoutes.MobileDeviceRoutes(apiGroupMobile)
 
 	apiGroupWeb := e.Group("web")
-	articleRoutes.WebArticleRoutes(*apiGroupWeb)
+	articleRoutes.WebArticleRoutes(apiGroupWeb)
 }

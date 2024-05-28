@@ -2,7 +2,7 @@ package routes
 
 import "github.com/labstack/echo/v4"
 
-func (routes *ArticleRoutesImpl) MobileArticleRoutes(apiGroup echo.Group) {
+func (routes *ArticleRoutesImpl) MobileArticleRoutes(apiGroup *echo.Group) {
 	ArticleGroup := apiGroup.Group("/api/articles")
 
 	ArticleGroup.GET("", routes.Handler.GetAllArticles)
@@ -10,7 +10,7 @@ func (routes *ArticleRoutesImpl) MobileArticleRoutes(apiGroup echo.Group) {
 	ArticleGroup.GET("/search/:title", routes.Handler.ArticleSearch)
 }
 
-func (routes *ArticleRoutesImpl) WebArticleRoutes(apiGroup echo.Group) {
+func (routes *ArticleRoutesImpl) WebArticleRoutes(apiGroup *echo.Group) {
 	ArticleGroup := apiGroup.Group("/api/articles")
 
 	ArticleGroup.POST("/create", routes.Handler.CreateArticle)

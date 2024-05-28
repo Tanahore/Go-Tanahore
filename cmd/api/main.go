@@ -33,6 +33,7 @@ func main() {
 	firebaseClient, _ := firebase.InitFirebase(&config.Firebase)
 	cloudinaryUploader := cloudinary.NewClodinaryUploader(&config.Cloudinary)
 	validate := validator.New()
+	ctx := context.Background()
 	e := echo.New()
 
 	app.InitApp(db, validate, e, &cloudinaryUploader, &config.ModelAPI, firebaseClient)
@@ -66,7 +67,7 @@ func main() {
 	<-quit
 
 	// Shutdown Echo gracefully
-	if err := e.Shutdown(context.Background()); err != nil {
+	if err := e.Shutdown(ctx); err != nil {
 		logrus.Fatal("Error shutting down server:", err)
 	}
 
