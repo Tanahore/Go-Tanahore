@@ -10,6 +10,7 @@ import (
 type AppConfig struct {
 	MySQL      MySQLConfig
 	Cloudinary CloudinaryConfig
+	ModelAPI   ModelAPIConfig
 }
 
 type MySQLConfig struct {
@@ -24,6 +25,11 @@ type CloudinaryConfig struct {
 	CloudName string
 	ApiKey    string
 	ApiSecret string
+}
+
+type ModelAPIConfig struct {
+	SoilPredictURL      string
+	PlantRecommendation string
 }
 
 func InitConfig() (*AppConfig, error) {
@@ -44,6 +50,10 @@ func InitConfig() (*AppConfig, error) {
 			CloudName: os.Getenv("CLOUDINARY_CLOUD_NAME"),
 			ApiKey:    os.Getenv("CLOUDINARY_API_KEY"),
 			ApiSecret: os.Getenv("CLOUDINARY_API_SECRET"),
+		},
+		ModelAPI: ModelAPIConfig{
+			SoilPredictURL:      os.Getenv("SOIL_MODEL_API_URL"),
+			PlantRecommendation: os.Getenv("PLANT_MODEL_API_URL"),
 		},
 	}, nil
 }
