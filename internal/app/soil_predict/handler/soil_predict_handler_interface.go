@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"tanahore/configs"
 	"tanahore/internal/app/soil_predict/service"
 
 	"github.com/labstack/echo/v4"
@@ -13,10 +14,12 @@ type SoilPredictHandler interface {
 
 type SoilPredictHandlerImpl struct {
 	SoilPredictService service.SoilPredictService
+	URLConfig          *configs.ModelAPIConfig
 }
 
-func NewSoilPredictHandler(service service.SoilPredictService) SoilPredictHandler {
+func NewSoilPredictHandler(service service.SoilPredictService, url *configs.ModelAPIConfig) SoilPredictHandler {
 	return SoilPredictHandlerImpl{
 		SoilPredictService: service,
+		URLConfig:          url,
 	}
 }

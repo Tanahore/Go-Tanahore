@@ -33,7 +33,7 @@ func main() {
 	validate := validator.New()
 	e := echo.New()
 
-	app.InitApp(db, validate, e, &cloudinaryUploader)
+	app.InitApp(db, validate, e, &cloudinaryUploader, &config.ModelAPI)
 
 	e.GET("/", func(c echo.Context) error {
 		file, err := os.ReadFile("./web/static/index.html")

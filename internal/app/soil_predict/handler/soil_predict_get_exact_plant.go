@@ -21,7 +21,7 @@ func (handler SoilPredictHandlerImpl) GetExactPlant(ctx echo.Context) error {
 	if err != nil {
 		return responses.StatusInternalServerError(ctx, "something went wrong", err)
 	}
-	url := "http://localhost:8081/api/recommendation"
+	url := handler.URLConfig.PlantRecommendation
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
 	if err != nil {
 		fmt.Println("Error:", err)
