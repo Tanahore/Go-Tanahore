@@ -46,7 +46,7 @@ func (soilPredictHandler SoilPredictHandlerImpl) GetPrediction(ctx echo.Context)
 	}
 
 	// Membuat request ke API eksternal
-	externalURL := "http://localhost:8081/api/predict"
+	externalURL := soilPredictHandler.URLConfig.SoilPredictURL
 	req, err := http.NewRequest("POST", externalURL, &buf)
 	if err != nil {
 		return responses.StatusInternalServerError(ctx, "Failed to create request", err)
