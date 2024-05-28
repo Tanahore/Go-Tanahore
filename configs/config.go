@@ -11,6 +11,7 @@ type AppConfig struct {
 	MySQL      MySQLConfig
 	Cloudinary CloudinaryConfig
 	ModelAPI   ModelAPIConfig
+	Firebase   FirebaseConfig
 }
 
 type MySQLConfig struct {
@@ -30,6 +31,11 @@ type CloudinaryConfig struct {
 type ModelAPIConfig struct {
 	SoilPredictURL      string
 	PlantRecommendation string
+}
+
+type FirebaseConfig struct {
+	FirebaseKey string
+	FirebaseURL string
 }
 
 func InitConfig() (*AppConfig, error) {
@@ -54,6 +60,10 @@ func InitConfig() (*AppConfig, error) {
 		ModelAPI: ModelAPIConfig{
 			SoilPredictURL:      os.Getenv("SOIL_MODEL_API_URL"),
 			PlantRecommendation: os.Getenv("PLANT_MODEL_API_URL"),
+		},
+		Firebase: FirebaseConfig{
+			FirebaseKey: os.Getenv("FIREBASE_ADMIN"),
+			FirebaseURL: os.Getenv("FIREBASE_URL"),
 		},
 	}, nil
 }
