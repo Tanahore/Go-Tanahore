@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"tanahore/configs"
 	"tanahore/internal/app"
+	"tanahore/internal/infrastructure/firebase"
 	"tanahore/internal/infrastructure/mysql"
 	"tanahore/internal/pkg/cloudinary"
 
@@ -29,11 +30,12 @@ func main() {
 		logrus.Fatal("cannot connect to mysql : ", err.Error())
 	}
 
+	firebaseClient, _ := firebase.InitFirebase(&config.Firebase)
 	cloudinaryUploader := cloudinary.NewClodinaryUploader(&config.Cloudinary)
 	validate := validator.New()
 	e := echo.New()
 
-	app.InitApp(db, validate, e, &cloudinaryUploader, &config.ModelAPI)
+	app.InitApp(db, validate, e, &cloudinaryUploader, &config.ModelAPI, firebaseClient)
 
 	e.GET("/", func(c echo.Context) error {
 		file, err := os.ReadFile("./web/static/index.html")
