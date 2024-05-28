@@ -9,6 +9,7 @@ import (
 
 type DeviceService interface {
 	CreateDevice(req *web.CreateDeviceRequest) error
+	GetDeviceInputData(req *web.DevicePredictBestPlant) (*web.DeviceInputResponse, error)
 }
 
 type DeviceServiceImpl struct {

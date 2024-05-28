@@ -1,6 +1,7 @@
 package devices
 
 import (
+	"tanahore/configs"
 	handlerPkg "tanahore/internal/app/devices/handler"
 	repositoryPkg "tanahore/internal/app/devices/repository"
 	routesPkg "tanahore/internal/app/devices/routes"
@@ -10,10 +11,10 @@ import (
 	"github.com/go-playground/validator"
 )
 
-func DeviceSetup(db *db.Client, validate *validator.Validate) routesPkg.DeviceRoute {
+func DeviceSetup(db *db.Client, validate *validator.Validate, modelURL *configs.ModelAPIConfig) routesPkg.DeviceRoute {
 	repository := repositoryPkg.NewDeviceRepository(db)
 	service := servicePkg.NewDeviceService(repository, validate)
-	handler := handlerPkg.NewDeviceHandler(service)
+	handler := handlerPkg.NewDeviceHandler(service, modelURL)
 	routes := routesPkg.NewDeviceRoutes(handler)
 
 	return routes

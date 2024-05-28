@@ -7,5 +7,8 @@ type SoilPlantRecommendationRequest struct {
 	IntensitasCahaya int              `json:"intensitasCahaya" validate:"required"`
 	Ph               float32          `json:"ph" validate:"required"`
 	JenisTanah       domain.SoilTypes `json:"jenisTanah" validate:"required"`
-	Vulkanik         domain.Volcanics `json:"vulkanik" validate:"required"`
+}
+
+type SoilTypeRequest struct {
+	SoilType domain.SoilTypes `json:"jenisTanah" validate:"required"`
 }

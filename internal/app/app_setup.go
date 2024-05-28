@@ -21,7 +21,7 @@ func InitApp(db *gorm.DB, validate *validator.Validate, e *echo.Echo, cloudinary
 	articleRoutes := articles.ArticleSetup(db, validate, *cloudinary)
 	articleRoutes.MobileArticleRoutes(apiGroupMobile)
 
-	deviceRoutes := devices.DeviceSetup(firebaseClient, validate)
+	deviceRoutes := devices.DeviceSetup(firebaseClient, validate, url)
 	deviceRoutes.MobileDeviceRoutes(apiGroupMobile)
 
 	apiGroupWeb := e.Group("web")
