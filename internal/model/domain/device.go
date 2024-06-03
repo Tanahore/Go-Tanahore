@@ -10,7 +10,7 @@ type Device struct {
 type DeviceInput struct {
 	PhLevel        float32 `json:"ph"`
 	Humidity       int     `json:"kelembapan"`
-	Temperature    string  `json:"suhu"`
+	Temperature    float32 `json:"suhu"`
 	LightIntensity int     `json:"intensitasCahaya"`
 }
 

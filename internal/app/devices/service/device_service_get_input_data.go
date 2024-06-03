@@ -2,12 +2,14 @@ package service
 
 import (
 	"errors"
+	"tanahore/internal/model/domain"
 	"tanahore/internal/model/web"
 	converter "tanahore/internal/pkg/converter/request"
-	converterRes "tanahore/internal/pkg/converter/response"
+
+	"github.com/sirupsen/logrus"
 )
 
-func (service *DeviceServiceImpl) GetDeviceInputData(req *web.DevicePredictBestPlant) (*web.DeviceInputResponse, error) {
+func (service *DeviceServiceImpl) GetDeviceInputData(req *web.DevicePredictBestPlant) (*domain.Device, error) {
 	if err := service.Validate.Struct(req); err != nil {
 		return nil, errors.New("error, " + err.Error())
 	}
@@ -26,6 +28,7 @@ func (service *DeviceServiceImpl) GetDeviceInputData(req *web.DevicePredictBestP
 	if err != nil {
 		return nil, errors.New("error, " + err.Error())
 	}
-	res := converterRes.DeviceModelToDeviceInput(inputData, req.SoilType)
-	return res, nil
+	logrus.Info("input data : ", inputData)
+	// res := converterRes.DeviceModelToDeviceInput(inputData, req.SoilType)
+	return inputData, nil
 }

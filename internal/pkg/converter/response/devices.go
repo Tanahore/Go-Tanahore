@@ -9,7 +9,6 @@ func DeviceModelToDeviceInput(device *domain.Device, soilType domain.SoilTypes) 
 	return &web.DeviceInputResponse{
 		PhLevel:        device.Input.PhLevel,
 		Humidity:       device.Input.Humidity,
-		Temperature:    device.Input.Temperature,
 		LightIntensity: device.Input.LightIntensity,
 		SoilType:       string(soilType),
 	}

@@ -28,7 +28,11 @@ type ImageModelApiResponse struct {
 
 // plants predict
 type PlantModelResponseData struct {
-	Plant string `json:"plantRecommendation"`
+	Plant          string  `json:"plantRecommendation"`
+	Temperature    float32 `json:"suhu"`
+	Humidity       float32 `json:"kelembapan"`
+	LightIntensity int     `json:"intensitasCahaya"`
+	PhLevel        float32 `json:"ph"`
 }
 
 type PlantModelApiResponse struct {
