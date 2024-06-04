@@ -2,8 +2,6 @@ FROM golang:1.21-alpine AS build
 
 WORKDIR /app
 
-RUN apt update
-
 COPY . .
 
 RUN go build -o ./cmd/api
