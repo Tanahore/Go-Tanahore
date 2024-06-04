@@ -7,14 +7,36 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"tanahore/configs"
+	"tanahore/internal/app"
+	"tanahore/internal/infrastructure/firebase"
+	"tanahore/internal/infrastructure/mysql"
+	"tanahore/internal/pkg/cloudinary"
 
+	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
+	config, err := configs.InitConfig()
+	if err != nil {
+		logrus.Fatal("error loading congfiguration : ", err.Error())
+	}
+
+	db, err := mysql.NewMySQLConnection(&config.MySQL)
+	if err != nil {
+		logrus.Fatal("cannot connect to mysql : ", err.Error())
+	}
+
+	firebaseClient, _ := firebase.InitFirebase(&config.Firebase)
+	cloudinaryUploader := cloudinary.NewClodinaryUploader(&config.Cloudinary)
+	validate := validator.New()
+	ctx := context.Background()
 	e := echo.New()
+
+	app.InitApp(db, validate, e, &cloudinaryUploader, &config.ModelAPI, firebaseClient)
 
 	e.GET("/", func(c echo.Context) error {
 		file, err := os.ReadFile("./web/static/index.html")
@@ -45,7 +67,7 @@ func main() {
 	<-quit
 
 	// Shutdown Echo gracefully
-	if err := e.Shutdown(context.Background()); err != nil {
+	if err := e.Shutdown(ctx); err != nil {
 		logrus.Fatal("Error shutting down server:", err)
 	}
 
