@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o go-tanahore ./cmd/api/main.go
+RUN go build -o tanahore.exe ./cmd/api/main.go
 
 EXPOSE 8080
 
-CMD ["./go-tanahore.exe"]
+CMD ["./tanahore.exe"]
