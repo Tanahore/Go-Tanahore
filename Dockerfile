@@ -2,16 +2,12 @@ FROM golang:1.21-alpine AS build
 
 WORKDIR /app
 
+RUN apt update
+
 COPY . .
 
-RUN go build -o main .
-
-FROM alpine:latest
-
-WORKDIR /app
-
-COPY --from=build /app/main .
+RUN go build -o ./cmd/api
 
 EXPOSE 8080
 
-CMD ["./main"]
+CMD ["./go-tanahore.exe"]
