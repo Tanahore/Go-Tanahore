@@ -28,17 +28,17 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-tanahore:latest
           
-      - name: connect ssh
+      - name: Connect SSH
         uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: 
-            docker stop ${{ secrets.CONTAINER_NAME }}
-            docker rm ${{ secrets.CONTAINER_NAME }}
-            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/go-tanahore:latest
+          script: |
+            docker stop ${{ secrets.CONTAINER_NAME }} || true
+            docker rm ${{ secrets.CONTAINER_NAME }} || true
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/go-tanahore:latest || true
             docker run --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 -d \
               -e FIREBASE_ADMIN="${{ secrets.FIREBASE_ADMIN }}" \
               -e FIREBASE_URL="${{ secrets.FIREBASE_URL }}" \
