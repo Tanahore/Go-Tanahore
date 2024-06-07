@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strings"
 	"tanahore/internal/model/web"
+	converter "tanahore/internal/pkg/converter/request"
 	"tanahore/internal/pkg/responses"
 
 	"github.com/labstack/echo/v4"
@@ -33,7 +34,8 @@ func (handler *DeviceHandlerImpl) PredictBestPlant(ctx echo.Context) error {
 		}
 		return responses.StatusInternalServerError(ctx, "something happened", err)
 	}
-	payload, err := json.Marshal(inputData)
+	modelRequest := converter.DeviceInputToModelRequest(inputData, (*string)(&req.SoilType))
+	payload, err := json.Marshal(modelRequest)
 	if err != nil {
 		return responses.StatusInternalServerError(ctx, "something went wrong", err)
 	}

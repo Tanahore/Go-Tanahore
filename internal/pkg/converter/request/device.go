@@ -3,6 +3,7 @@ package request
 import (
 	"encoding/json"
 	"tanahore/internal/model/domain"
+	"tanahore/internal/model/web"
 )
 
 func CreateDeviceToDomain() *domain.Device {
@@ -23,4 +24,14 @@ func DeviceInfoToMap(device *domain.Device) (map[string]interface{}, error) {
 		return nil, err
 	}
 	return dataMap, nil
+}
+
+func DeviceInputToModelRequest(device *domain.Device, soilType *string) *web.ExactPlantRequest {
+	return &web.ExactPlantRequest{
+		Humidity:       float32(device.Input.Humidity),
+		Temperature:    device.Input.Temperature,
+		SoilType:       *soilType,
+		LightIntensity: device.Input.LightIntensity,
+		PH:             device.Input.PhLevel,
+	}
 }
