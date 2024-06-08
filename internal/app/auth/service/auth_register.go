@@ -11,7 +11,7 @@ func (service *AuthServiceImpl) RegisterUser(req *web.RegisterUserRequest) (*web
 	if err := service.Validate.Struct(req); err != nil {
 		return nil, err
 	}
-	if exists := service.AuthRepository.UserExists(req.Username, req.Email); exists {
+	if exists := service.AuthRepository.UserExists(req.Username, req.Email); exists != nil {
 		return nil, errors.New("user exists")
 	}
 	user := converterReq.RegisterUserRequestToUserModel(req)

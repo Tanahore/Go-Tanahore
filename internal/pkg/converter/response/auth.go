@@ -19,7 +19,13 @@ func AuthResponseToLoginResponse(auth *web.AuthResponse, token string) *web.User
 	return &web.UserLoginResponse{
 		ID:          auth.ID,
 		Username:    auth.Username,
-		RoleName:    auth.RoleName,
 		AccessToken: token,
+	}
+}
+
+func UserToLoginResponse(user *domain.Users) *web.UserLoginResponse {
+	return &web.UserLoginResponse{
+		ID:       user.ID,
+		Username: user.Username,
 	}
 }
