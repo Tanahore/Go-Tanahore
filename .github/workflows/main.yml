@@ -28,12 +28,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tanahore:latest
           
-      - name: Debug Secrets (Temporary)
-        run: |
-          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}"
-          echo "CONTAINER_NAME=${{ secrets.CONTAINER_NAME }}"
-        shell: bash
-
       - name: Connect SSH
         uses: appleboy/ssh-action@v0.1.9
         with:
@@ -44,7 +38,25 @@ jobs:
           script: |
             docker stop ${{ secrets.CONTAINER_NAME }} || true
             docker rm ${{ secrets.CONTAINER_NAME }} || true
+      
+      - name: Remove Docker Image
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/tanahore:latest || true
+      
+      - name: Run Docker Container
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
             docker run --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 -d \
               -e FIREBASE_ADMIN="${{ secrets.FIREBASE_ADMIN }}" \
               -e FIREBASE_URL="${{ secrets.FIREBASE_URL }}" \
