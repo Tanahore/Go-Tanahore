@@ -9,6 +9,7 @@ import (
 
 type AuthService interface {
 	RegisterUser(req *web.RegisterUserRequest) (*web.AuthResponse, error)
+	LoginUser(req *web.LoginUserRequest) (*web.AuthResponse, *web.UserLoginResponse, error)
 }
 
 type AuthServiceImpl struct {

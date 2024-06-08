@@ -8,7 +8,7 @@ import (
 
 type AuthRepository interface {
 	RegisterUser(user *domain.Users) error
-	UserExists(username string, email string) bool
+	UserExists(username string, email string) *domain.Users
 }
 
 type AuthRepositoryImpl struct {
