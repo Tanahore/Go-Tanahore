@@ -57,7 +57,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker run --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 -d \
+            docker run --name tanahore -p 8080:8080 -d \
               -e FIREBASE_ADMIN="${{ secrets.FIREBASE_ADMIN }}" \
               -e FIREBASE_URL="${{ secrets.FIREBASE_URL }}" \
               -e SOIL_MODEL_API_URL="${{ secrets.SOIL_MODEL_API_URL }}" \
