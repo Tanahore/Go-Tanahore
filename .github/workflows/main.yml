@@ -26,7 +26,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-tanahore:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tanahore:latest
           
       - name: Connect SSH
         uses: appleboy/ssh-action@v0.1.9
@@ -39,4 +39,4 @@ jobs:
             docker stop ${{ secrets.CONTAINER_NAME }} || true
             docker rm ${{ secrets.CONTAINER_NAME }} || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/go-tanahore:latest || true
-            docker run --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 -d -e FIREBASE_ADMIN="${{ secrets.FIREBASE_ADMIN }}" -e FIREBASE_URL="${{ secrets.FIREBASE_URL }}" -e SOIL_MODEL_API_URL="${{ secrets.SOIL_MODEL_API_URL }}" -e PLANT_MODEL_API_URL="${{ secrets.PLANT_MODEL_API_URL }}" -e CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" -e CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" -e CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" -e DB_HOST="${{ secrets.DB_HOST }}" -e DB_NAME="${{ secrets.DB_NAME }}" -e DB_PORT="${{ secrets.DB_PORT }}" -e DB_USERNAME="${{ secrets.DB_USERNAME }}" -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" ${{ secrets.DOCKERHUB_USERNAME }}/go-tanahore:latest
+            docker run --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 -d -e FIREBASE_ADMIN="${{ secrets.FIREBASE_ADMIN }}" -e FIREBASE_URL="${{ secrets.FIREBASE_URL }}" -e SOIL_MODEL_API_URL="${{ secrets.SOIL_MODEL_API_URL }}" -e PLANT_MODEL_API_URL="${{ secrets.PLANT_MODEL_API_URL }}" -e CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}" -e CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}" -e CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}" -e DB_HOST="${{ secrets.DB_HOST }}" -e DB_NAME="${{ secrets.DB_NAME }}" -e DB_PORT="${{ secrets.DB_PORT }}" -e DB_USERNAME="${{ secrets.DB_USERNAME }}" -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" ${{ secrets.DOCKERHUB_USERNAME }}/tanahore:latest
