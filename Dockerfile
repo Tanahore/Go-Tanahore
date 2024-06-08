@@ -14,10 +14,10 @@ ENV GO111MODULE=on
 # RUN go mod download
 
 # Build the Go application
-RUN go build -o go-tanahore ./cmd/api/main.go
+RUN go build -o tanahore ./cmd/api/main.go
 
 # Expose the port that your API will run on
 EXPOSE 8080
 
 # Command to run the executable
-CMD ["./go-tanahore"]
+CMD ["./tanahore"]
