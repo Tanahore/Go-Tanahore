@@ -28,6 +28,12 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tanahore:latest
           
+      - name: Debug Secrets (Temporary)
+        run: |
+          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}"
+          echo "CONTAINER_NAME=${{ secrets.CONTAINER_NAME }}"
+        shell: bash
+
       - name: Connect SSH
         uses: appleboy/ssh-action@v0.1.9
         with:
@@ -52,4 +58,4 @@ jobs:
               -e DB_PORT="${{ secrets.DB_PORT }}" \
               -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
               -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
-              ${{ secrets.DOCKERHUB_USERNAME }}/tanahore:latest
+              aryaelmahdi/tanahore:latest
