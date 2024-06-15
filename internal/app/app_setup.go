@@ -19,7 +19,7 @@ func InitApp(db *gorm.DB, validate *validator.Validate, e *echo.Echo, cloudinary
 	soilPredictRoutes := soilPredict.SoilPredictSetup(db, validate, url)
 	soilPredictRoutes.MobileSoilPredict(apiGroupMobile)
 
-	articleRoutes := articles.ArticleSetup(db, validate, *cloudinary)
+	articleRoutes := articles.ArticleSetup(db, validate, *cloudinary, url)
 	articleRoutes.MobileArticleRoutes(apiGroupMobile)
 
 	deviceRoutes := devices.DeviceSetup(firebaseClient, validate, url)
