@@ -68,6 +68,8 @@ func (handler *ArticleHandlerImpl) InformationRetrieval(ctx echo.Context) error 
 		return responses.StatusInternalServerError(ctx, "Failed to unmarshal JSON response", err)
 	}
 
-	fmt.Println("5")
+	if len(apiResponse.Articles) == 0 {
+		return responses.StatusNotFound(ctx, "cannot find "+query+" in articles", errors.New("articles not found"))
+	}
 	return responses.StatusOK(ctx, "Success", apiResponse, nil)
 }
