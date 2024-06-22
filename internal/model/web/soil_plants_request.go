@@ -10,5 +10,5 @@ type SoilPlantRecommendationRequest struct {
 }
 
 type SoilTypeRequest struct {
-	SoilType domain.SoilTypes `json:"jenisTanah" validate:"required"`
+	SoilType domain.SoilTypes `json:"jenisTanah" validate:"required" form:"jenisTanah"`
 }

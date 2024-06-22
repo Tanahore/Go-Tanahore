@@ -29,8 +29,9 @@ type CloudinaryConfig struct {
 }
 
 type ModelAPIConfig struct {
-	SoilPredictURL      string
-	PlantRecommendation string
+	SoilPredictURL       string
+	PlantRecommendation  string
+	InformationRetrieval string
 }
 
 type FirebaseConfig struct {
@@ -58,8 +59,9 @@ func InitConfig() (*AppConfig, error) {
 			ApiSecret: os.Getenv("CLOUDINARY_API_SECRET"),
 		},
 		ModelAPI: ModelAPIConfig{
-			SoilPredictURL:      os.Getenv("SOIL_MODEL_API_URL"),
-			PlantRecommendation: os.Getenv("PLANT_MODEL_API_URL"),
+			SoilPredictURL:       os.Getenv("SOIL_MODEL_API_URL"),
+			PlantRecommendation:  os.Getenv("PLANT_MODEL_API_URL"),
+			InformationRetrieval: os.Getenv("INFORMATION_RETRIEVAL_API_URL"),
 		},
 		Firebase: FirebaseConfig{
 			FirebaseKey: os.Getenv("FIREBASE_ADMIN"),

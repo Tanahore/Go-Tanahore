@@ -1,6 +1,8 @@
 package web
 
-import "tanahore/internal/model/domain"
+import (
+	"tanahore/internal/model/domain"
+)
 
 type AllArticlesResponse struct {
 	ArticleID uint             `gorm:"type:int;autoIncrement;primaryKey" json:"articleID"`
@@ -14,4 +16,13 @@ type GetAllArticlesResponse struct {
 	ArticleID uint   `json:"articleID"`
 	Title     string `json:"title"`
 	ImageURL  string `json:"imageURL"`
+}
+
+type ToInformationRetrievalFormat struct {
+	Query    string                `json:"query"`
+	Articles []AllArticlesResponse `json:"articles"`
+}
+
+type FromInformationRetrieval struct {
+	Articles []AllArticlesResponse `json:"articles"`
 }
