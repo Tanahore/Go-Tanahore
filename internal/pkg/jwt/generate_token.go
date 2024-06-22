@@ -9,7 +9,7 @@ import (
 )
 
 func GenerateAccessToken(userLoginResponse *web.AuthResponse) (string, error) {
-	expireTime := time.Now().Add(time.Hour * 2).Unix()
+	expireTime := time.Now().Add(time.Hour * 24).Unix()
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
 	claims["id"] = userLoginResponse.ID

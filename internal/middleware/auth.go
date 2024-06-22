@@ -65,9 +65,9 @@ func AdminMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return AuthMiddleware(next, "admin")
 }
 
-func InstructorMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+func UserMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return AuthMiddleware(next, "user")
 }
-func AllUserMiddleare(next echo.HandlerFunc) echo.HandlerFunc {
+func AllMiddleare(next echo.HandlerFunc) echo.HandlerFunc {
 	return AuthMiddleware(next, "all")
 }
