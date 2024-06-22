@@ -8,6 +8,7 @@ func (routes *ArticleRoutesImpl) MobileArticleRoutes(apiGroup *echo.Group) {
 	ArticleGroup.GET("", routes.Handler.GetAllArticles)
 	ArticleGroup.GET("/:id", routes.Handler.GetArticleByID)
 	ArticleGroup.GET("/search/:title", routes.Handler.ArticleSearch)
+	ArticleGroup.GET("/search/:query", routes.Handler.InformationRetrieval)
 }
 
 func (routes *ArticleRoutesImpl) WebArticleRoutes(apiGroup *echo.Group) {

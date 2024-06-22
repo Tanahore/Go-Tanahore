@@ -14,6 +14,7 @@ type ArticleService interface {
 	GetAllArticles() ([]web.GetAllArticlesResponse, error)
 	GetArticlesByID(article_id *web.GetArticlesByID) (*web.AllArticlesResponse, error)
 	ArticleSearch(req *web.GetArticlesByTitle) ([]web.GetAllArticlesResponse, error)
+	InformationRetrieval() ([]web.AllArticlesResponse, error)
 }
 
 type ArticleServiceImpl struct {
