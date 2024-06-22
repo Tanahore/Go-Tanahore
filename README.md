@@ -1,4 +1,10 @@
 # Go-Tanahore
 
-Tech Stack
-![Tech Stack](http://url/to/img.png](https://drive.google.com/file/d/1aSrauammFoaHuLACOrnR76-SI7A_DRei/view?usp=sharing))
+## Tech Stack
+
+- Framework : Echo
+- DB : Firebase RTDB, MySQL
+- Deployment : Google Cloud Platform (GCP) / App Engine
+- Code Structure : Clean Architecture
+- Authentication : JWT
+- Container : Docker
