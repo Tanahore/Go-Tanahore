@@ -40,9 +40,11 @@ type FirebaseConfig struct {
 }
 
 func InitConfig() (*AppConfig, error) {
-	err := godotenv.Load()
-	if err != nil {
-		return nil, fmt.Errorf("failed to load environment variables from .env file: %w", err)
+	if _, err := os.Stat(".env"); err == nil {
+		err = godotenv.Load()
+		if err != nil {
+			fmt.Errorf("failed to load environment variables from .env file: %w", err)
+		}
 	}
 
 	return &AppConfig{
